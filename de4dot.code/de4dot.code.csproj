@@ -360,6 +360,14 @@
     <Compile Include="deobfuscators\UnpackedFile.cs" />
     <Compile Include="deobfuscators\UnusedMethodsFinder.cs" />
     <Compile Include="deobfuscators\ValueInlinerBase.cs" />
+    <Compile Include="deobfuscators\VirtualGuard\AntiDebugRemover.cs" />
+    <Compile Include="deobfuscators\VirtualGuard\AntiTamperRemover.cs" />
+    <Compile Include="deobfuscators\VirtualGuard\ControlFlowFixer.cs" />
+    <Compile Include="deobfuscators\VirtualGuard\Deobfuscator.cs" />
+    <Compile Include="deobfuscators\VirtualGuard\NativeSwitchData.cs" />
+    <Compile Include="deobfuscators\VirtualGuard\NormalSwitchData.cs" />
+    <Compile Include="deobfuscators\VirtualGuard\ProxyCallFixer.cs" />
+    <Compile Include="deobfuscators\VirtualGuard\Utils.cs" />
     <Compile Include="deobfuscators\Xenocode\Deobfuscator.cs" />
     <Compile Include="deobfuscators\Xenocode\StringDecrypter.cs" />
     <Compile Include="DumpedMethodsRestorer.cs" />
@@ -438,6 +446,7 @@
       <LastGenOutput>CsvmResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>mkdir "..\$(OutDir)..\LICENSES"
