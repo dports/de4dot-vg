@@ -1,137 +1,148 @@
-## de4dot CEx
-A de4dot fork with full support for vanilla ConfuserEx
+## de4dot VG
+A de4dot fork with full support for [VirtualGuard Protector](https://virtualguard.io/)  
+
+*Refer to the blogpost for more information.*    
+https://mrt4ntr4.github.io/VirtualGuard-P1/  
 
 ## Features
-* Supports x86 (native) mode
-* Supports normal mode
-* Decrypts and inlines constants
-* Decrypts resources
 * Fixes control flow
 * Fixes proxy calls
-* Deobfuscated assemblies are runnable
-
-## Notes
-* You have to unpack the obfuscated assembly **before** running this deobfuscator. The easiest way is to dump the module/s just after the methods have been decrypted.
-* This deobfuscator uses method invocation for constant decryption, therefore you always **risk** running malware if it's present in the obfuscated assembly. Be cautious and use a VM/Sandboxie!
+* Removes Anti-Debug methods
+* Removes Anti-Tamper methods
 
 ### [Original README](README-orig.md)
 ---
 
 ## Samples
 
-### Before (obfuscated symbols shortened):
+### Before (obfuscated control flow):
 ```csharp
-ublic byte[] ShiftAddress(uint address)
+MemoryStream memoryStream = new MemoryStream();
+byte[] source;
+try
 {
-	byte[] array = new byte[4];
 	for (;;)
 	{
-		IL_07:
-		int num = -2174478396;
+		IL_9A2:
+		uint num30 = 0xC871780U;
 		for (;;)
 		{
 			uint num2;
-			switch ((num2 = (uint)<Module>.a(num)) % 7u)
+			switch ((num2 = (num30 ^ 0x7C4718BDU)) % 6U)
 			{
-			case 0u:
-				goto IL_07;
-			case 1u:
+			case 0U:
 			{
-				int num3 = 0;
-				num = (int)(num2 * 81144519u ^ 2359132411u);
+				source = memoryStream.ToArray();
+				uint num31 = num2;
+				uint[] array = new uint[5];
+				array[0] = 0xC8U;
+				array[1] = 0x1DEU - array[0];
+				array[2] = 0x131U - array[1] + array[0];
+				array[3] = 0xA5U + array[2] + array[1] - array[0];
+				array[4] = 0x198U - array[3] - array[2] + array[1] + array[0];
+				uint num32 = num31 / array[4];
+				num30 = num32 - 0xFF2B6A6FU;
 				continue;
 			}
-			case 2u:
-				num = (int)(num2 * 2975731004u ^ 34171348176);
-				continue;
-			case 3u:
+			case 2U:
 			{
-				int num3;
-				num3++;
-				num = (int)(num2 * 2174567110u ^ 244457623u);
+				uint num33 = num2;
+				uint[] array = new uint[3];
+				array[0] = 0x17DU;
+				array[1] = 0x1FCU - array[0];
+				array[2] = 0x3CDU - array[1] - array[0];
+				uint num34 = num33 / array[2];
+				num30 = num34 - 0xCFE18673U;
 				continue;
 			}
-			case 5u:
+			case 3U:
+				goto IL_9A2;
+			case 4U:
 			{
-				int num3;
-				num = ((num3 >= 4) ? 631278122 : 1299552879);
+				uint num35 = num2;
+				uint[] array = new uint[3];
+				array[0] = 0x140U;
+				array[1] = 0x1C2U - array[0];
+				array[2] = 0x224U + array[1] - array[0];
+				uint num36 = num35 / array[2];
+				num30 = num36 - 0xDE1106F5U;
 				continue;
 			}
-			case 6u:
+			case 5U:
 			{
-				int num3;
-				array[num3] = (byte)(address >> num3 * 8 & 255u);
-				num = 556578930;
+				deflateStream.CopyTo(memoryStream);
+				uint num37 = num2;
+				uint[] array = new uint[4];
+				array[0] = 0xAFU;
+				array[1] = 0xF5U + array[0];
+				array[2] = 0x304U - array[1] - array[0];
+				array[3] = 0xFFFFFDA1U + array[2] + array[1] + array[0];
+				uint num38 = num37 / array[3];
+				num30 = num38 - 0xAF527217U;
 				continue;
 			}
 			}
-			return array;
+			goto Block_14;
 		}
 	}
-	return array;
+	Block_14:;
 }
-```
-
-### After:
-```csharp
-public byte[] ShiftAddress(uint address)
+finally
 {
-	byte[] array = new byte[4];
-	for (int i = 0; i < 4; i++)
+	if (memoryStream != null)
 	{
-		array[i] = (byte)(address >> i * 8 & 255u);
-	}
-	return array;
-}
-```
-
-### Before (obfuscated symbols shortened):
-```csharp
-public bool WriteBytes(uint address, List<byte> buffer)
-{
-	byte[] array = buffer.ToArray();
-	IntPtr intPtr;
-	uint num = Memory.a(this.Handle, b((long)((ulong)address)), array, (uint)array.Length, out intPtr);
-	for (;;)
-	{
-		IL_25:
-		int num2 = 482469350;
 		for (;;)
 		{
-			uint num3;
-			switch ((num3 = (uint)<Module>.c(num2)) % 5u)
+			IL_C61:
+			uint num39 = 0x120BF13FU;
+			for (;;)
 			{
-			case 0u:
-				this.d.Account.Log.WriteLine(<Module>.e<string>(3167610260u));
-				num2 = (int)(num3 * 3588940066u ^ 1074051690u);
-				continue;
-			case 2u:
-				return false;
-			case 3u:
-				goto IL_25;
-			case 4u:
-				num2 = (int)(((num != 0u) ? 4496537787u : 434512514u) ^ num3 * 589449693u);
-				continue;
+				uint num2;
+				switch ((num2 = (num39 ^ 0x7C4718BDU)) % 4U)
+				{
+				case 1U:
+				{
+					uint num40 = num2;
+					uint[] array = new uint[4];
+					array[0] = 0x140U;
+					array[1] = 0x36U + array[0];
+					array[2] = 0x3AEU - array[1] - array[0];
+					array[3] = 0xFFFFFD7CU + array[2] + array[1] + array[0];
+					uint num41 = num40 / array[3];
+					num39 = num41 - 0x90A8BA9BU;
+					continue;
+				}
+				case 2U:
+				{
+					((IDisposable)memoryStream).Dispose();
+					uint num42 = num2;
+					uint[] array = new uint[5];
+					array[0] = 0xE6U;
+					array[1] = 0x1ADU - array[0];
+					array[2] = 0x6EU - array[1] + array[0];
+					array[3] = 0x1DDU - array[2] - array[1] + array[0];
+					array[4] = 0x17AU + array[3] + array[2] - array[1] - array[0];
+					uint num43 = num42 / array[4];
+					num39 = num43 - 0xD08D6419U;
+					continue;
+				}
+				case 3U:
+					goto IL_C61;
+				}
+				goto Block_16;
 			}
-			goto Block_1;
 		}
+		Block_16:;
 	}
-	Block_1:
-	return true;
 }
 ```
 
 ### After:
 ```csharp
-public bool WriteBytes(uint address, List<byte> buffer)
+byte[] source;
+using (MemoryStream memoryStream = new MemoryStream())
 {
-	byte[] array = buffer.ToArray();
-	IntPtr intPtr;
-	if (Memory.WriteProcessMemory(this.Handle, (IntPtr)((long)((ulong)address)), array, (uint)array.Length, out intPtr) == 0u)
-	{
-		this.Owner.Console.Log.WriteLine("WriteBytes failed: WriteProcessMemory failed");
-		return false;
-	}
-	return true;
+	deflateStream.CopyTo(memoryStream);
+	source = memoryStream.ToArray();
 }
 ```
