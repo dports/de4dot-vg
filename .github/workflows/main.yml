@@ -10,10 +10,14 @@ jobs:
     steps:
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
-      
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
-      
+      env:
+        ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
     - uses: actions/checkout@v1
     - name: Build
       run: |
@@ -21,14 +25,11 @@ jobs:
         nuget restore de4dot.sln
         msbuild de4dot.sln /p:Configuration=Release /m /verbosity:normal /p:WarningLevel=0
     - name: Create ZIP
-      if: startsWith(github.ref, 'refs/tags/')
       run: |
         Compress-Archive -Path Release/* -DestinationPath de4dot-cex
-      
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
+        
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
       with:
-          files: de4dot-cex.zip
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        path: de4dot-cex.zip
+        name: de4dot-cex.zip
